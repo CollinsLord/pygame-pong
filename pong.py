@@ -3,10 +3,12 @@
 import sys
 import pygame
 
+WIDTH = 800
+HEIGHT = 600
 FPS = 60
 
 pygame.init()
-screen = pygame.display.set_mode((800, 600))
+screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Pong")
 clock = pygame.time.Clock()
 while True:

@@ -24,11 +24,6 @@ class Paddle(pygame.sprite.Sprite):
         self.image.fill(WHITE)
         self.rect = self.image.get_rect()
         self.rect.center = (x, HEIGHT / 2)
- 
-def draw():
-        self.screen.fill(BLACK)
-        self.all_sprites.draw(screen)
-        pygame.display.flip()
 
 pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))

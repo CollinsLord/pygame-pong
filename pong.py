@@ -15,7 +15,7 @@ WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
 
 class Paddle(pygame.sprite.Sprite):
-    def __init__(self, x):
+    def __init__(self, x, upkey, downkey):
         self.group = all_sprites
         pygame.sprite.Sprite.__init__(self, self.group)
         self.x = x
@@ -24,14 +24,29 @@ class Paddle(pygame.sprite.Sprite):
         self.image.fill(WHITE)
         self.rect = self.image.get_rect()
         self.rect.center = (x, HEIGHT / 2)
+        self.y_speed = 0
+        self.upkey = upkey
+        self.downkey = downkey
+
+    def update(self):
+        self.y_speed = 0
+        keys = pygame.key.get_pressed()
+        print(self.rect.center)
+        if keys[self.upkey]:
+            self.y_speed = -5
+        if keys[self.downkey]:
+            self.y_speed = 5
+        self.y += self.y_speed
+        self.rect.center = (self.x, self.y)
+
 
 pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Pong")
 clock = pygame.time.Clock()
 all_sprites = pygame.sprite.Group()
-left_paddle = Paddle(30)
-right_paddle = Paddle(WIDTH - 30)
+left_paddle = Paddle(30, pygame.K_q, pygame.K_z)
+right_paddle = Paddle(WIDTH - 30, pygame.K_UP, pygame.K_DOWN)
 all_sprites.add(left_paddle)
 all_sprites.add(right_paddle)
 while True:
@@ -40,5 +55,6 @@ while True:
         if event.type == pygame.QUIT:
             sys.exit(0)
     screen.fill(BLACK)
+    all_sprites.update()
     all_sprites.draw(screen)
     pygame.display.flip()

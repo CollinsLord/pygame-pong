@@ -18,8 +18,6 @@ class Paddle(pygame.sprite.Sprite):
     def __init__(self, x, upkey, downkey):
         self.group = all_sprites
         pygame.sprite.Sprite.__init__(self, self.group)
-        self.x = x
-        self.y = HEIGHT / 2
         self.image = pygame.Surface((20,100))
         self.image.fill(WHITE)
         self.rect = self.image.get_rect()
@@ -36,8 +34,12 @@ class Paddle(pygame.sprite.Sprite):
             self.y_speed = -5
         if keys[self.downkey]:
             self.y_speed = 5
-        self.y += self.y_speed
-        self.rect.center = (self.x, self.y)
+        self.rect.y += self.y_speed
+        #self.rect.center = (self.x, self.y)
+        if self.rect.y < 0:
+            self.rect.y = 0
+        if self.rect.y > HEIGHT - 100:
+            self.rect.y = HEIGHT - 100
 
 
 pygame.init()

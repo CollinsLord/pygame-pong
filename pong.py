@@ -38,6 +38,10 @@ class Paddle(pygame.sprite.Sprite):
             self.y_speed = 5
         self.y += self.y_speed
         self.rect.center = (self.x, self.y)
+        if self.rect.y < 0:
+            self.rect.y = 0
+        if self.rect.y > HEIGHT - 100:
+            self.rect.y = HEIGHT - 100
 
 
 pygame.init()

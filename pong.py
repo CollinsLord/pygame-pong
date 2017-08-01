@@ -3,6 +3,9 @@
 import sys
 import pygame
 
+PADDLE_WIDTH = 10
+PADDLE_HEIGHT = 60
+
 WIDTH = 800
 HEIGHT = 600
 FPS = 60
@@ -18,7 +21,7 @@ class Paddle(pygame.sprite.Sprite):
     def __init__(self, x, upkey, downkey):
         self.group = all_sprites
         pygame.sprite.Sprite.__init__(self, self.group)
-        self.image = pygame.Surface((20,100))
+        self.image = pygame.Surface((PADDLE_WIDTH, PADDLE_HEIGHT))
         self.image.fill(WHITE)
         self.rect = self.image.get_rect()
         self.rect.center = (x, HEIGHT / 2)
@@ -37,8 +40,8 @@ class Paddle(pygame.sprite.Sprite):
         #self.rect.center = (self.x, self.y)
         if self.rect.y < 0:
             self.rect.y = 0
-        if self.rect.y > HEIGHT - 100:
-            self.rect.y = HEIGHT - 100
+        if self.rect.y > HEIGHT - PADDLE_HEIGHT:
+            self.rect.y = HEIGHT - PADDLE_HEIGHT
 
 
 pygame.init()

@@ -29,7 +29,6 @@ class Paddle(pygame.sprite.Sprite):
     def update(self):
         self.y_speed = 0
         keys = pygame.key.get_pressed()
-        print(self.rect.center)
         if keys[self.upkey]:
             self.y_speed = -5
         if keys[self.downkey]:

@@ -43,7 +43,14 @@ class Paddle(pygame.sprite.Sprite):
         if self.rect.y > HEIGHT - PADDLE_HEIGHT:
             self.rect.y = HEIGHT - PADDLE_HEIGHT
 
-
+class Ball(pygame.sprite.Sprite):
+    def __init__(self):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.Surface((15, 15))
+        self.image.fill(WHITE)
+        self.rect = self.image.get_rect()
+        self.rect.center = (WIDTH / 2, HEIGHT / 2)
+        
 pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Pong")
@@ -53,6 +60,8 @@ left_paddle = Paddle(30, pygame.K_q, pygame.K_z)
 right_paddle = Paddle(WIDTH - 30, pygame.K_UP, pygame.K_DOWN)
 all_sprites.add(left_paddle)
 all_sprites.add(right_paddle)
+ball = Ball()
+all_sprites.add(ball)
 while True:
     dt = clock.tick(FPS) / 1000
     for event in pygame.event.get():
